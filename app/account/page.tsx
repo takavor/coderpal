@@ -6,17 +6,17 @@ import { redirect } from "next/navigation";
 import authOptions from "@/lib/auth";
 import dbConnect from "@/lib/mongodb";
 import Post from "@/models/Post";
+import ProjectXButton from "../components/ProjectXButton";
 
 export default async function Account() {
   const session = await getServerSession(authOptions);
+  await dbConnect();
 
   if (!session) {
     redirect("/api/auth/signin");
   }
 
   async function getProjects() {
-    await dbConnect();
-
     if (!session) {
       console.log("Session is null, can't find posts");
       return;
@@ -37,14 +37,20 @@ export default async function Account() {
         Logged in as <span className="font-bold">{session.user.username}</span>{" "}
       </h1>
 
-      <div>
-        <p className="header">My projects</p>
+      <p className="header">My projects</p>
+      <div className="grid grid-cols-1 gap-4 divide-y">
         {projects?.map((project, index) => (
-          <div key={index}>{project.title}</div>
+          <div
+            key={index}
+            className="flex justify-between max-w-sm bg-white rounded-md p-2"
+          >
+            {project.title}
+            <ProjectXButton id={project.id} />
+          </div>
         ))}
       </div>
 
-      <LinkButton href={"/create-project"} text="create project" />
+      <LinkButton href={"/create-project"} text="create new project" />
       <LinkButton href={"/api/auth/signout"} text="sign out" />
     </main>
   );
