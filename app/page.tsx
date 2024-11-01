@@ -19,7 +19,6 @@ export default async function Home() {
       </p>
 
       <div className="flex justify-center">
-        {/* <button>View Tickets</button> */}
         <LinkButton text={"View Posts"} href="/posts" />
       </div>
     </main>

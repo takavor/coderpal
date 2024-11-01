@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 
 interface PostCardProps {
@@ -16,9 +16,19 @@ export default function PostCard({ post }: PostCardProps) {
       <p>
         <span className="font-bold">{post.title}</span>
       </p>
-      <p>
-        posted by <span className="font-bold">{post.authorUsername}</span>
-      </p>
+      <div className="flex items-center gap-2">
+        <p>
+          posted by <span className="font-bold">{post.authorUsername}</span>
+        </p>
+        
+        <Image
+          src={post.authorImage}
+          alt="profile picture"
+          width={32}
+          height={32}
+          className="rounded-full"
+        />
+      </div>
       <hr />
       <p>{post.description}</p>
       <hr />

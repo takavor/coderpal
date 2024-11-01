@@ -19,6 +19,7 @@ const authOptions: NextAuthOptions = {
           username: profile.login,
           email: profile.email,
           image: profile.avatar_url,
+          githubLink: profile.html_url,
         };
       },
     }),
@@ -28,6 +29,8 @@ const authOptions: NextAuthOptions = {
     async session({ session, token, user }) {
       session.user.username = user.username;
       session.user.id = user.id;
+      session.user.githubLink = user.githubLink;
+
       return session;
     },
   },

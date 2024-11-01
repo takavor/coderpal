@@ -33,7 +33,7 @@ export default async function Navbar() {
           <NavBarButton text={"sign in with github"} />
         </Link>
       ) : (
-        <div className="flex items-center gap-4 ">
+        <div className="flex items-center gap-2 ">
           <p className="">{session.user.username}</p>
           <Link href={"/account"}>
             <Image

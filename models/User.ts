@@ -9,6 +9,7 @@ export interface UserDocument {
   image: string;
   createdAt: Date;
   updatedAt: Date;
+  githubLink: string;
 }
 
 const UserSchema = new Schema<UserDocument>(

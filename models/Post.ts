@@ -4,11 +4,13 @@ export interface PostDocument {
   _id: string;
   authorId: string;
   authorUsername: string;
+  authorImage: string;
   title: string;
   description: string;
   createdAt: Date;
   updatedAt: Date;
   programmingLanguages: String[];
+  githubLink: string;
 }
 
 const PostSchema = new Schema<PostDocument>(
@@ -31,6 +33,12 @@ const PostSchema = new Schema<PostDocument>(
     },
     programmingLanguages: {
       type: [String],
+    },
+    authorImage: {
+      type: String,
+    },
+    githubLink: {
+      type: String,
     },
   },
   {

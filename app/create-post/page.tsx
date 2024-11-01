@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 // mongo
 import dbConnect from "@/lib/mongodb";
 import Post from "@/models/Post";
-import { Error } from "mongoose";
 
 // auth
 import authOptions from "@/lib/auth";
@@ -35,6 +34,8 @@ export default function CreatePost() {
 
     const authorId = session.user.id;
     const authorUsername = session.user.username;
+    const authorImage = session.user.image;
+    const authorGithubLink = session.user.githubLink;
 
     const post = new Post({
       title: title,
@@ -42,6 +43,8 @@ export default function CreatePost() {
       authorId: authorId,
       authorUsername: authorUsername,
       programmingLanguages: languages,
+      authorImage: authorImage,
+      githubLink: authorGithubLink,
     });
 
     let success = true;
