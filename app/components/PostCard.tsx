@@ -7,6 +7,7 @@ interface PostCardProps {
     description: string;
     authorUsername: string;
     programmingLanguages: string[];
+    authorImage: string;
   };
 }
 
@@ -20,7 +21,7 @@ export default function PostCard({ post }: PostCardProps) {
         <p>
           posted by <span className="font-bold">{post.authorUsername}</span>
         </p>
-        
+
         <Image
           src={post.authorImage}
           alt="profile picture"
@@ -30,7 +31,7 @@ export default function PostCard({ post }: PostCardProps) {
         />
       </div>
       <hr />
-      <p>{post.description}</p>
+      <p>{post.description.slice(0, 500)}...</p>
       <hr />
       <div className="flex flex-col md:flex-row gap-4">
         <p>Languages:</p>

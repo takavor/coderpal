@@ -7,7 +7,7 @@ interface NavBarButtonProps {
 
 export default function NavBarButton({ text }: NavBarButtonProps) {
   return (
-    <div className="bg-primary text-center p-2 text-white rounded-sm transition hover:bg-primary/80">
+    <div className="bg-primary text-center px-2 py-1 text-white rounded-sm transition hover:bg-primary/80">
       {text}
     </div>
   );

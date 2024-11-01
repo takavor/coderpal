@@ -15,7 +15,12 @@ import { programmingLanguages } from "../data/programmingLanguages";
 // components
 import SubmitButton from "../components/SubmitButton";
 
-export default function CreatePost() {
+export default async function CreatePost() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
   async function createPost(formData: FormData) {
     "use server";
 
@@ -26,8 +31,6 @@ export default function CreatePost() {
     const languages = formData.getAll("languages");
 
     // get user id
-    const session = await getServerSession(authOptions);
-
     if (!session) {
       return;
     }
@@ -57,13 +60,13 @@ export default function CreatePost() {
     }
 
     if (success) {
-      redirect(`/post/${id}`);
+      redirect(`/project/${id}`);
     }
   }
 
   return (
     <main>
-      <p className="header">Create post</p>
+      <p className="header">Create project</p>
       <form action={createPost} className="flex flex-col">
         <div className="my-4 flex flex-col">
           <label htmlFor="title">Project Title</label>
@@ -100,7 +103,7 @@ export default function CreatePost() {
         </div>
 
         <div className="my-8 flex justify-center">
-          <SubmitButton text="create post" />
+          <SubmitButton text="create project" />
         </div>
       </form>
     </main>

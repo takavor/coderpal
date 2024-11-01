@@ -24,7 +24,7 @@ export default async function Posts() {
     <div className="">
       {posts.map((post, index) => {
         return (
-          <Link key={index} href={`/post/${post.id}`}>
+          <Link key={index} href={`/project/${post.id}`}>
             <PostCard key={index} post={post} />
           </Link>
         );
