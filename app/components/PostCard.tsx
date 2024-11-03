@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import moment from "moment";
 
 interface PostCardProps {
   post: {
@@ -8,6 +9,7 @@ interface PostCardProps {
     authorUsername: string;
     programmingLanguages: string[];
     authorImage: string;
+    createdAt: Date;
   };
 }
 
@@ -29,6 +31,8 @@ export default function PostCard({ post }: PostCardProps) {
           height={32}
           className="rounded-full"
         />
+        {/* <p>on {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</p> */}
+        <p>{moment(post.createdAt).startOf("hour").fromNow()}</p>
       </div>
       <hr />
       <p>
@@ -37,7 +41,7 @@ export default function PostCard({ post }: PostCardProps) {
           : post.description}
       </p>
       <hr />
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col lg:flex-row gap-4">
         <p>Languages:</p>
         {post.programmingLanguages?.map((language, index) => {
           return (

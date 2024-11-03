@@ -12,12 +12,15 @@ import { getServerSession } from "next-auth";
 import authOptions from "@/lib/auth";
 import FormSubmitButton from "@/app/components/FormSubmitButton";
 import { revalidatePath } from "next/cache";
+import LinkButton from "@/app/components/LinkButton";
+import moment from "moment";
 
 export default async function PostPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const session = await getServerSession(authOptions);
   await dbConnect();
   async function getPost() {
     "use server";
@@ -32,7 +35,6 @@ export default async function PostPage({
     const commentText = formData.get("comment");
 
     // get info of user posting the comment
-    const session = await getServerSession(authOptions);
     if (!session) {
       // login page
       redirect("/api/auth/signin");
@@ -109,6 +111,7 @@ export default async function PostPage({
             className="rounded-full"
           />
         </Link>
+        <p>on {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</p>
       </div>
       <div className="flex flex-col gap-4 bg-white p-4 rounded-sm">
         <div className="gap-4">
@@ -116,6 +119,16 @@ export default async function PostPage({
           <h2>{post.title}</h2>
         </div>
         <hr />
+        <div className="flex flex-col lg:flex-row gap-4">
+          <p>Languages:</p>
+          {post.programmingLanguages.map((language: string, index: number) => {
+            return (
+              <li className="list-none" key={index}>
+                {language}
+              </li>
+            );
+          })}
+        </div>
         <div>
           <h1 className="header">project description</h1>
           <h2>{post.description}</h2>
@@ -132,26 +145,39 @@ export default async function PostPage({
           return (
             <div className="flex flex-col" key={index}>
               <div className="bg-white p-4 my-2 rounded-sm">
-                <div className="flex items-center gap-2 mb-4">
-                  <p>
-                    Posted by{" "}
-                    <span className="font-bold">{commentAuthor.username}</span>
-                  </p>
-                  <Link
-                    href={commentAuthor.githubLink}
-                    passHref
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <Image
-                      src={commentAuthor.image}
-                      width={32}
-                      height={32}
-                      alt="commenter profile picture"
-                      className="rounded-full"
-                    />
-                  </Link>
+                <div className="flex max-[400px]:flex-col flex-row items-center gap-2 mb-4 justify-between ">
+                  <div className="flex items-center gap-2">
+                    <p>
+                      <span className="font-bold">
+                        {commentAuthor.username}
+                      </span>
+                    </p>
+                    <Link
+                      href={commentAuthor.githubLink}
+                      passHref
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <Image
+                        src={commentAuthor.image}
+                        width={32}
+                        height={32}
+                        alt="commenter profile picture"
+                        className="rounded-full"
+                      />
+                    </Link>
+                  </div>
+                  {/* render comment date based on screen size */}
+                  <div>
+                    <p className="hidden sm:block">
+                      {moment(comment.createdAt).format("LLL")}
+                    </p>
+                    <p className="sm:hidden">
+                      {moment(comment.createdAt).format("lll")}
+                    </p>
+                  </div>
                 </div>
+                <hr className="my-2" />
                 {comment.text}
               </div>
             </div>
@@ -159,19 +185,26 @@ export default async function PostPage({
         })}
       </div>
 
-      <form action={createComment} className="flex flex-col">
-        <label htmlFor="comment">Post a comment</label>
-        <textarea
-          className="resize-none p-2 rounded-sm"
-          rows={3}
-          id="comment"
-          name="comment"
-          required
-        ></textarea>
-        <div className="my-2">
-          <FormSubmitButton text="post comment" />
+      {session ? (
+        <form action={createComment} className="flex flex-col">
+          <label htmlFor="comment">Post a comment</label>
+          <textarea
+            className="resize-none p-2 rounded-sm"
+            rows={3}
+            id="comment"
+            name="comment"
+            required
+          ></textarea>
+          <div className="my-2">
+            <FormSubmitButton text="post comment" />
+          </div>
+        </form>
+      ) : (
+        <div className="flex items-center gap-2">
+          <LinkButton text="Sign in" href="/api/auth/signin" />
+          to post a comment.
         </div>
-      </form>
+      )}
     </main>
   );
 }
