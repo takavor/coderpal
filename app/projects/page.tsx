@@ -21,7 +21,7 @@ export default async function Posts() {
   const posts = await getPosts();
 
   return (
-    <div className="">
+    <div className="transition hover:scale-[1.02]">
       {posts.map((post, index) => {
         return (
           <Link key={index} href={`/project/${post.id}`}>

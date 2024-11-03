@@ -31,7 +31,11 @@ export default function PostCard({ post }: PostCardProps) {
         />
       </div>
       <hr />
-      <p>{post.description.slice(0, 500)}...</p>
+      <p>
+        {post.description.length >= 500
+          ? post.description.slice(0, 500) + "..."
+          : post.description}
+      </p>
       <hr />
       <div className="flex flex-col md:flex-row gap-4">
         <p>Languages:</p>

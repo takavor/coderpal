@@ -2,15 +2,16 @@ import React from "react";
 
 import dbConnect from "@/lib/mongodb";
 import Post from "@/models/Post";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Comment from "@/models/Comment";
+import User from "@/models/User";
 import SubmitButton from "@/app/components/SubmitButton";
 import { getServerSession } from "next-auth";
 import authOptions from "@/lib/auth";
-
-// TODO: update comment section in realtime
+import FormSubmitButton from "@/app/components/FormSubmitButton";
+import { revalidatePath } from "next/cache";
 
 export default async function PostPage({
   params,
@@ -32,7 +33,10 @@ export default async function PostPage({
 
     // get info of user posting the comment
     const session = await getServerSession(authOptions);
-    if (!session) return;
+    if (!session) {
+      // login page
+      redirect("/api/auth/signin");
+    }
 
     const authorUsername = session.user.username;
     const authorId = session.user.id;
@@ -51,6 +55,9 @@ export default async function PostPage({
 
     // save post
     await post.save();
+
+    // revalidate current path for comment to appear automatically
+    revalidatePath("");
   }
 
   async function getComment(id: string) {
@@ -60,7 +67,16 @@ export default async function PostPage({
       _id: id,
     });
 
-    return comment;
+    // get poster
+    const authorId = comment.authorId;
+    let commentAuthor = await User.findById({
+      _id: authorId,
+    });
+
+    return {
+      comment: comment.toObject(),
+      commentAuthor: commentAuthor.toObject(),
+    };
   }
 
   // get post
@@ -99,20 +115,49 @@ export default async function PostPage({
           <h1 className="header">project title</h1>
           <h2>{post.title}</h2>
         </div>
-
+        <hr />
         <div>
           <h1 className="header">project description</h1>
           <h2>{post.description}</h2>
         </div>
       </div>
 
-      {post.commentIds.length === 0 && <p>This post has no comments.</p>}
+      <div className="my-4">
+        <h1 className="header">Comments</h1>
+        {post.commentIds.length === 0 && <p>This post has no comments.</p>}
 
-      {post.commentIds.map(async (commentId: string, index: number) => {
-        let comment = await getComment(commentId);
+        {post.commentIds.map(async (commentId: string, index: number) => {
+          let { comment, commentAuthor } = await getComment(commentId);
 
-        return <div key={index}>{comment.text}</div>;
-      })}
+          return (
+            <div className="flex flex-col" key={index}>
+              <div className="bg-white p-4 my-2 rounded-sm">
+                <div className="flex items-center gap-2 mb-4">
+                  <p>
+                    Posted by{" "}
+                    <span className="font-bold">{commentAuthor.username}</span>
+                  </p>
+                  <Link
+                    href={commentAuthor.githubLink}
+                    passHref
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Image
+                      src={commentAuthor.image}
+                      width={32}
+                      height={32}
+                      alt="commenter profile picture"
+                      className="rounded-full"
+                    />
+                  </Link>
+                </div>
+                {comment.text}
+              </div>
+            </div>
+          );
+        })}
+      </div>
 
       <form action={createComment} className="flex flex-col">
         <label htmlFor="comment">Post a comment</label>
@@ -124,7 +169,7 @@ export default async function PostPage({
           required
         ></textarea>
         <div className="my-2">
-          <SubmitButton text="post comment" />
+          <FormSubmitButton text="post comment" />
         </div>
       </form>
     </main>
