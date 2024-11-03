@@ -11,6 +11,7 @@ export interface PostDocument {
   updatedAt: Date;
   programmingLanguages: String[];
   githubLink: string;
+  commentIds: String[];
 }
 
 const PostSchema = new Schema<PostDocument>(
@@ -39,6 +40,9 @@ const PostSchema = new Schema<PostDocument>(
     },
     githubLink: {
       type: String,
+    },
+    commentIds: {
+      type: [String],
     },
   },
   {
