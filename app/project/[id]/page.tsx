@@ -147,7 +147,7 @@ export default async function PostPage({
         </div>
       </main>
 
-      <div className="shadow-2xl bg-commentsection -mx-8 -mb-8 p-8 my-8">
+      <div className="p-8 my-8">
         <div className="max-w-5xl mx-auto">
           <h1 className="header">Comments ({post.commentIds.length})</h1>
           {post.commentIds.length === 0 && <p>This post has no comments.</p>}

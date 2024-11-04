@@ -10,7 +10,7 @@ interface LinkButtonProps {
 
 export default function LinkButton({ text, href }: LinkButtonProps) {
   return (
-    <Link href={href}>
+    <Link href={href} className="w-fit">
       <div className="bg-primary text-center p-2 text-white rounded-sm transition hover:bg-primary/80">
         {text}
       </div>
