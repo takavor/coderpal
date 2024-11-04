@@ -70,7 +70,7 @@ export default async function CreatePost() {
       <form action={createPost} className="flex flex-col">
         <div className="my-4 flex flex-col">
           <label htmlFor="title">Project Title</label>
-          <input id="title" name="title" required className="bg-card" />
+          <input id="title" name="title" required className="bg-card p-2" />
         </div>
 
         <div className="my-4 flex flex-col">
@@ -78,7 +78,7 @@ export default async function CreatePost() {
           <textarea
             id="description"
             name="description"
-            className="h-full bg-card"
+            className="h-full bg-card p-2"
             required
           ></textarea>
         </div>
@@ -94,7 +94,7 @@ export default async function CreatePost() {
                     id={`languages-${index}`}
                     value={language.name}
                     type="checkbox"
-                    className="mx-2"
+                    className="mx-2 accent-primary"
                   />
                   <label htmlFor={`languages-${index}`}>{language.name}</label>
                 </div>
@@ -104,7 +104,7 @@ export default async function CreatePost() {
         </div>
 
         <div className="my-8 flex justify-center">
-          <SubmitButton text="create project" />
+          <SubmitButton text="Create project" />
         </div>
       </form>
     </main>

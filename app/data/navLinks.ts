@@ -1,10 +1,6 @@
 export const navLinks = [
-  // {
-  //   text: "Dashboard",
-  //   href: "/",
-  // }
   {
-    text: "projects",
+    text: "Projects",
     href: "/projects",
   },
 ];

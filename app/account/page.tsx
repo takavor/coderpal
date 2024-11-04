@@ -52,8 +52,8 @@ export default async function Account() {
         ))}
       </div>
 
-      <LinkButton href={"/create-project"} text="create new project" />
-      <LinkButton href={"/api/auth/signout"} text="sign out" />
+      <LinkButton href={"/create-project"} text="Create new project" />
+      <LinkButton href={"/api/auth/signout"} text="Sign out" />
     </main>
   );
 }

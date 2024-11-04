@@ -198,7 +198,7 @@ export default async function PostPage({
           })}
 
           {session ? (
-            <form action={createComment} className="flex flex-col">
+            <form action={createComment} className="flex flex-col my-8">
               <label htmlFor="comment">Post a comment</label>
               <textarea
                 className="resize-none p-2 rounded-sm bg-card"
@@ -208,7 +208,7 @@ export default async function PostPage({
                 required
               ></textarea>
               <div className="my-2">
-                <FormSubmitButton text="post comment" />
+                <FormSubmitButton text="Post comment" />
               </div>
             </form>
           ) : (

@@ -36,16 +36,14 @@ export default async function Navbar() {
         <Link href={"/api/auth/signin"}>
           <NavBarButton
             icon={<FontAwesomeIcon icon={faGithub} width={24} />}
-            text={"sign in"}
+            text={"Sign in"}
           />
         </Link>
       ) : (
         <div className="flex items-center gap-2 ">
-          {/* <LinkButton hrf="create-project" text="create project" /> */}
-
           <Link href={"/create-project"}>
             <div className="hidden sm:block bg-primary text-center p-1 text-white rounded-sm w-32 m-2 transition hover:bg-primary/80">
-              create project
+              Create project
             </div>
           </Link>
 
