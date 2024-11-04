@@ -11,14 +11,11 @@ import { programmingLanguages } from "../data/programmingLanguages";
 import { getPostsByFilter } from "@/actions/getPostsByFilter";
 import { getAllPosts } from "@/actions/getAllPosts";
 
-interface PostsProps {
-  searchParams: {
-    language?: string;
-  };
-}
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
-export default async function Posts({ searchParams }: PostsProps) {
-  const language = (await searchParams).language;
+export default async function Posts(props: { searchParams: SearchParams }) {
+  const searchParams = await props.searchParams;
+  const language = searchParams.language as string;
 
   let posts;
   if (!language) {
