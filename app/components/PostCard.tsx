@@ -15,7 +15,7 @@ interface PostCardProps {
 
 export default function PostCard({ post }: PostCardProps) {
   return (
-    <div className="flex flex-col bg-white my-4 rounded-sm p-4 gap-2">
+    <div className="transition hover:shadow-xl flex flex-col bg-white my-4 rounded-sm p-4 gap-2">
       <p>
         <span className="font-bold">{post.title}</span>
       </p>
@@ -31,7 +31,6 @@ export default function PostCard({ post }: PostCardProps) {
           height={32}
           className="rounded-full"
         />
-        {/* <p>on {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</p> */}
         <p>{moment(post.createdAt).startOf("hour").fromNow()}</p>
       </div>
       <hr />

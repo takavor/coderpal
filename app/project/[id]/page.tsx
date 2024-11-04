@@ -95,15 +95,18 @@ export default async function PostPage({
     <main>
       <div className="flex max-[600px]:flex-col flex-row gap-2 my-2 justify-between">
         <div className="flex gap-2 items-center">
-          <h2>
-            Posted by <span className="font-bold">{post.authorUsername}</span>
-          </h2>
+          <h2>Posted by</h2>
           <Link
             href={post.githubLink}
             passHref
             rel="noopener noreferrer"
             target="_blank"
+            className="flex items-center gap-2"
           >
+            <span className="font-bold  hover:underline">
+              {post.authorUsername}
+            </span>
+
             <Image
               src={post.authorImage}
               width={32}
@@ -119,8 +122,8 @@ export default async function PostPage({
       </div>
       <div className="flex flex-col gap-4 bg-white p-4 rounded-sm">
         <div className="gap-4">
-          <h1 className="header">project title</h1>
-          <h2>{post.title}</h2>
+          {/* <h1 className="header">project title</h1> */}
+          <h1 className="header">{post.title}</h1>
         </div>
         <hr />
         <div className="flex flex-col lg:flex-row gap-4">
@@ -133,8 +136,9 @@ export default async function PostPage({
             );
           })}
         </div>
+        <hr />
         <div>
-          <h1 className="header">project description</h1>
+          <h1 className="header">Description</h1>
           <h2>{post.description}</h2>
         </div>
       </div>
@@ -151,17 +155,18 @@ export default async function PostPage({
               <div className="bg-white p-4 my-2 rounded-sm">
                 <div className="flex max-[600px]:flex-col flex-row gap-2 mb-4 justify-between ">
                   <div className="flex items-center gap-2">
-                    <p>
-                      <span className="font-bold">
-                        {commentAuthor.username}
-                      </span>
-                    </p>
                     <Link
                       href={commentAuthor.githubLink}
                       passHref
                       rel="noopener noreferrer"
                       target="_blank"
+                      className="flex items-center gap-2"
                     >
+                      <p className="hover:underline">
+                        <span className="font-bold ">
+                          {commentAuthor.username}
+                        </span>
+                      </p>
                       <Image
                         src={commentAuthor.image}
                         width={32}

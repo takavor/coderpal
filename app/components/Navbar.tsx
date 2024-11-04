@@ -12,6 +12,8 @@ import Image from "next/image";
 import authOptions from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import LinkButton from "./LinkButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default async function Navbar() {
   const session = await getServerSession(authOptions);
@@ -33,7 +35,10 @@ export default async function Navbar() {
 
       {!session ? (
         <Link href={"/api/auth/signin"}>
-          <NavBarButton text={"github sign in"} />
+          <NavBarButton
+            icon={<FontAwesomeIcon icon={faGithub} width={24} />}
+            text={"sign in"}
+          />
         </Link>
       ) : (
         <div className="flex items-center gap-2 ">

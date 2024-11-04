@@ -11,7 +11,7 @@ interface LinkButtonProps {
 export default function LinkButton({ text, href }: LinkButtonProps) {
   return (
     <Link href={href}>
-      <div className="bg-primary text-center p-2 text-white rounded-sm w-32 transition hover:bg-primary/80">
+      <div className="bg-primary text-center p-2 text-white rounded-sm transition hover:bg-primary/80">
         {text}
       </div>
     </Link>
