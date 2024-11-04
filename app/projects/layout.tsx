@@ -5,10 +5,5 @@ export default function Posts({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <main>
-      <h1 className="header">Projects</h1>
-      {children}
-    </main>
-  );
+  return <main>{children}</main>;
 }

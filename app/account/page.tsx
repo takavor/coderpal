@@ -44,8 +44,11 @@ export default async function Account() {
             key={index}
             className="flex justify-between max-w-sm bg-white rounded-md p-2"
           >
-            {project.title}
-            <ProjectXButton id={project.id} />
+            <div>{project.title}</div>
+            <div className="flex items-center gap-2">
+              {/* <div>Edit</div> */}
+              <ProjectXButton id={project.id} />
+            </div>
           </div>
         ))}
       </div>

@@ -70,7 +70,7 @@ export default async function CreatePost() {
       <form action={createPost} className="flex flex-col">
         <div className="my-4 flex flex-col">
           <label htmlFor="title">Project Title</label>
-          <input id="title" name="title" />
+          <input id="title" name="title" required />
         </div>
 
         <div className="my-4 flex flex-col">
@@ -79,6 +79,7 @@ export default async function CreatePost() {
             id="description"
             name="description"
             className="h-full"
+            required
           ></textarea>
         </div>
 

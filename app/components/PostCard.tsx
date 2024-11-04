@@ -22,7 +22,7 @@ export default function PostCard({ post }: PostCardProps) {
           <span className="font-bold">{post.title}</span>
         </p>
         <p>
-          {post.commentIds.length === 0 ? "No" : post.commentIds.length}{" "}
+          {post.commentIds.length}{" "}
           {post.commentIds.length === 1 ? "comment" : "comments"}
         </p>
       </div>
@@ -42,7 +42,7 @@ export default function PostCard({ post }: PostCardProps) {
           />
         </div>
         <div>
-          <p>{moment(post.createdAt).startOf("hour").fromNow()}</p>
+          <p>{moment(post.createdAt).startOf("minute").fromNow()}</p>
         </div>
       </div>
       <hr />
