@@ -13,6 +13,7 @@ const config: Config = {
         foreground: "var(--foreground)",
         primary: "rgba(var(--primary))",
         border: "var(--border)",
+        commentsection: "var(--commentsection)",
       },
     },
   },
