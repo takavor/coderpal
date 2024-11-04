@@ -93,25 +93,29 @@ export default async function PostPage({
 
   return (
     <main>
-      <div className="flex items-center gap-2 my-2">
-        <h2>
-          Posted by <span className="font-bold">{post.authorUsername}</span>
-        </h2>
-        <Link
-          href={post.githubLink}
-          passHref
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <Image
-            src={post.authorImage}
-            width={32}
-            height={32}
-            alt="profile picture"
-            className="rounded-full"
-          />
-        </Link>
-        <p>on {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</p>
+      <div className="flex max-[600px]:flex-col flex-row gap-2 my-2 justify-between">
+        <div className="flex gap-2 items-center">
+          <h2>
+            Posted by <span className="font-bold">{post.authorUsername}</span>
+          </h2>
+          <Link
+            href={post.githubLink}
+            passHref
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Image
+              src={post.authorImage}
+              width={32}
+              height={32}
+              alt="profile picture"
+              className="rounded-full"
+            />
+          </Link>
+        </div>
+        <div>
+          <p>{moment(post.createdAt).format("LLL")}</p>
+        </div>
       </div>
       <div className="flex flex-col gap-4 bg-white p-4 rounded-sm">
         <div className="gap-4">
@@ -145,7 +149,7 @@ export default async function PostPage({
           return (
             <div className="flex flex-col" key={index}>
               <div className="bg-white p-4 my-2 rounded-sm">
-                <div className="flex max-[400px]:flex-col flex-row items-center gap-2 mb-4 justify-between ">
+                <div className="flex max-[600px]:flex-col flex-row gap-2 mb-4 justify-between ">
                   <div className="flex items-center gap-2">
                     <p>
                       <span className="font-bold">
