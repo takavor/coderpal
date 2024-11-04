@@ -121,9 +121,8 @@ export default async function PostPage({
             <p>{moment(post.createdAt).format("LLL")}</p>
           </div>
         </div>
-        <div className="flex flex-col gap-4 bg-white p-4 rounded-sm">
+        <div className="flex flex-col gap-4 bg-card p-4 rounded-sm">
           <div className="gap-4">
-            {/* <h1 className="header">project title</h1> */}
             <h1 className="header">{post.title}</h1>
           </div>
           <hr />
@@ -157,7 +156,7 @@ export default async function PostPage({
 
             return (
               <div className="flex flex-col" key={index}>
-                <div className="bg-white p-4 my-2 rounded-sm">
+                <div className="bg-card p-4 my-2 rounded-sm">
                   <div className="flex max-[600px]:flex-col flex-row gap-2 mb-4 justify-between ">
                     <div className="flex items-center gap-2">
                       <Link
@@ -202,7 +201,7 @@ export default async function PostPage({
             <form action={createComment} className="flex flex-col">
               <label htmlFor="comment">Post a comment</label>
               <textarea
-                className="resize-none p-2 rounded-sm"
+                className="resize-none p-2 rounded-sm bg-card"
                 rows={3}
                 id="comment"
                 name="comment"

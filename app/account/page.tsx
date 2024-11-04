@@ -42,11 +42,10 @@ export default async function Account() {
         {projects?.map((project, index) => (
           <div
             key={index}
-            className="flex justify-between max-w-sm bg-white rounded-md p-2"
+            className="flex justify-between max-w-sm bg-card rounded-md p-2"
           >
             <div>{project.title}</div>
             <div className="flex items-center gap-2">
-              {/* <div>Edit</div> */}
               <ProjectXButton id={project.id} />
             </div>
           </div>

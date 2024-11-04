@@ -16,7 +16,7 @@ interface PostCardProps {
 
 export default function PostCard({ post }: PostCardProps) {
   return (
-    <div className="transition hover:shadow-xl flex flex-col bg-white my-4 rounded-sm p-4 gap-2">
+    <div className="transition hover:shadow-xl flex flex-col bg-card my-4 rounded-sm p-4 gap-2">
       <div className="flex flex-col justify-start sm:flex-row  sm:justify-between">
         <p>
           <span className="font-bold">{post.title}</span>

@@ -14,6 +14,7 @@ const config: Config = {
         primary: "rgba(var(--primary))",
         border: "var(--border)",
         commentsection: "var(--commentsection)",
+        card: "var(--card)",
       },
     },
   },

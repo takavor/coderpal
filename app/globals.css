@@ -8,12 +8,15 @@
     --primary: 61, 82, 160;
     --border: #bcbcbc;
     --commentsection: #d6cae8;
+    --card: white;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #0a0a0a;
+        --primary: 85, 99, 171;
+        --background: #121212;
         --foreground: #ededed;
+        --card: #282828;
     }
 }
 
