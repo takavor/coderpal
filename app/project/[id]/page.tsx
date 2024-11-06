@@ -7,14 +7,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Comment from "@/models/Comment";
 import User from "@/models/User";
-import SubmitButton from "@/app/components/SubmitButton";
 import { getServerSession } from "next-auth";
 import authOptions from "@/lib/auth";
 import FormSubmitButton from "@/app/components/FormSubmitButton";
 import { revalidatePath } from "next/cache";
 import LinkButton from "@/app/components/LinkButton";
-import moment from "moment";
-import PostDate from "@/app/components/PostDate";
+import Date from "@/app/components/Date";
 
 export default async function PostPage({
   params,
@@ -121,7 +119,7 @@ export default async function PostPage({
           {/* <div>
             <p>{moment(post.createdAt).format("LLL")}</p>
           </div> */}
-          <PostDate post={JSON.parse(JSON.stringify(post))} />
+          <Date obj={JSON.parse(JSON.stringify(post))} />
         </div>
         <div className="flex flex-col gap-4 bg-card p-4 rounded-sm">
           <div className="gap-4">
@@ -183,14 +181,15 @@ export default async function PostPage({
                       </Link>
                     </div>
                     {/* render comment date based on screen size */}
-                    <div>
+                    {/* <div>
                       <p className="hidden sm:block">
                         {moment(comment.createdAt).format("LLL")}
                       </p>
                       <p className="sm:hidden">
                         {moment(comment.createdAt).format("lll")}
                       </p>
-                    </div>
+                    </div> */}
+                    <Date obj={JSON.parse(JSON.stringify(comment))} />
                   </div>
                   <hr className="my-2" />
                   {comment.text}
