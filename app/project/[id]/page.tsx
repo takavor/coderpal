@@ -14,6 +14,7 @@ import FormSubmitButton from "@/app/components/FormSubmitButton";
 import { revalidatePath } from "next/cache";
 import LinkButton from "@/app/components/LinkButton";
 import moment from "moment";
+import PostDate from "@/app/components/PostDate";
 
 export default async function PostPage({
   params,
@@ -117,9 +118,10 @@ export default async function PostPage({
               />
             </Link>
           </div>
-          <div>
+          {/* <div>
             <p>{moment(post.createdAt).format("LLL")}</p>
-          </div>
+          </div> */}
+          <PostDate post={JSON.parse(JSON.stringify(post))} />
         </div>
         <div className="flex flex-col gap-4 bg-card p-4 rounded-sm">
           <div className="gap-4">
