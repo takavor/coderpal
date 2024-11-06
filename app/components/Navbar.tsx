@@ -21,7 +21,7 @@ export default async function Navbar() {
     <nav className="flex text-md gap-4 border-b border-b-border py-8 mx-auto items-center max-w-5xl mb-16 justify-between">
       <Link href={"/"}>
         <h1 className="text-lg">
-          <span className="text-primary font-extrabold">siteNameHere</span>.io
+          <span className="text-primary font-extrabold">coderpal</span>.dev
         </h1>
       </Link>
 

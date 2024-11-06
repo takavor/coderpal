@@ -11,7 +11,7 @@ export default async function Home() {
 
   return (
     <main className="">
-      <h1 className="header">devvy.dev</h1>
+      <h1 className="header">coderpal.dev</h1>
       <p className="paragraph">
         A website to find collaborators for your programming project.
       </p>
